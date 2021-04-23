@@ -13,5 +13,16 @@
 }
 
 .list-icons {
-  
+  display: flex;
+}
+
+.list-icon {
+  padding-right: 13px;
+  cursor: pointer;
+}
+#icon-trash:hover {
+  color: red;
+}
+#icon-pencil:hover{
+  color: white;
 }

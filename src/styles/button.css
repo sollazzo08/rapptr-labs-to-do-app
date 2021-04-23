@@ -1,9 +1,18 @@
 .button {
   background-color: #272f32;
   border-radius: 8%;
+  border: none;
   color: white;
   outline: none;
   font-weight: bold;
   height: 30px;
   width: 60px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: rgba(255, 255, 255, .01);
+  color: #272f32;
+  border: 1px solid #272f32;
+
 }
