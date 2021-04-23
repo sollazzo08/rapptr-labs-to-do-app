@@ -7,25 +7,23 @@ const LoginForm = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [errors, setErrors] = useState({})
 
-  let schema = yup.object().shape({
-    email: yup.string().email().required(),
-    password: yup.string().required()
+  // let schema = yup.object().shape({
+  //   email: yup.string().email().required(),
+  //   password: yup.string().required()
 
-  })
+  // })
 
-  const validate = async () => {
+  // const validate = async () => {
  
-     await schema.validate(formData).catch(function (err) {
-        console.log(err.errors)
-      })
-
-     
-  }
+  //    await schema.validate(formData).catch(function (err) {
+  //       console.log(err.errors)
+  //     })
+  // }
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    validate()
+    // validate()
   };
 
   const handleChange = ({ target: input }) => {
