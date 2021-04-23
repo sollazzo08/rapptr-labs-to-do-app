@@ -1,4 +1,8 @@
 import React from 'react';
+import Button from './Button';
+import Icon from './Icon'
+import '../styles/ListStyles/listHeader.css';
+import SearchBar from './SearchBar';
 
 const ListHeader = ({ children, onClick }) => {
   /*
@@ -6,10 +10,17 @@ const ListHeader = ({ children, onClick }) => {
   */
   return (
     <div className="list-header">
-      <input type="search" />
-      <button onClick={onClick}>{children}</button>
+      <div>
+        <SearchBar
+          type="search"
+          placeholder=" search..."
+          IconComponent={<Icon name="search" />}
+        />
+      </div>
+      <div>
+        <Button onClick={onClick}>New</Button>
+      </div>
     </div>
-  
   );
 };
 

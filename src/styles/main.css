@@ -10,4 +10,6 @@
   height: 100vh;
   justify-content: center;
   align-items: center;
+  background-color: rgb(21, 46, 70);
+  background-image: radial-gradient(circle at 0px 100%, rgba(255, 255, 255, 0), rgb(83, 98, 112) 96%);  
 }
