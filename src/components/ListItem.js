@@ -1,11 +1,11 @@
 import React from 'react';
 import '../styles/ListStyles/listItem.css'
 
-const ListItem = ({ title, IconComponent }) => {
-  console.log(IconComponent)
+const ListItem = ({ onEdit, title, Input, IconComponent }) => {
+
   return (
     <div className="list-item">
-      <div className="list-title">{title}</div>
+      {onEdit ? <input type="text" /> : <div className="list-title">{title}</div>}
       <div className="list-icons">
       <div id="icon-pencil" className="list-icon">{IconComponent[0]}</div>
       <div id="icon-trash" className="list-icon">{IconComponent[1]}</div>
