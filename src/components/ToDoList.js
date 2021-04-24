@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import ListItem from './ListItem';
 import Icon from './Icon';
+import {Link} from 'react-router-dom'
 import { faTrashAlt, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import ListHeader from './ListHeader';
 import Input from './Input'
@@ -20,10 +21,11 @@ const ToDoList = () => {
 
   const [todos, setTodos] = useState([]);
   const [onEdit, setOnEdit] = useState(false)
+  const [input, setInput] = useState([])
 
   useEffect(() => {
     setTodos(data)
-    console.log(data)
+  
   },[])
 
 
@@ -34,17 +36,19 @@ const ToDoList = () => {
     const todosClone = todos.filter((t) => t.id !== todo.id);
     setTodos(todosClone);
   };
-  const handleEditToDo = (id, input) => {
+  const handleEditToDo = (todo, title) => {
     
-  // const todosClone = [...todos]
-  //   const editedTodo = todosClone.map((todo) => {
-  //     if(todo.id === id){
-  //       todo.title = 'hello'
-  //       console.log(todo.title)
-  //     }
-  //     return todo
-  //   })
-  //   setTodos(editedTodo)
+  const todosClone = [...todos]
+    const updatedTodo = todosClone.map((t) => {
+      if(t.id === todo.id){
+        t.title = title
+      
+      }
+      return t
+    })
+    setOnEdit(true)
+    setInput(title)
+    //setTodos(updatedTodo)
   }
 
 
@@ -69,11 +73,15 @@ const ToDoList = () => {
               <ListItem
                 key={todo.id}
                 IconComponent={[
-                  <Icon name={faPencilAlt} onClick={handleEditToDo} />,
+                  <Link
+                    to={`/todo/${todo.id}`}
+                  >
+                    <Icon name={faPencilAlt} onClick={() => handleEditToDo(todo, todo.title)} />
+                  </Link>,
                   <Icon name={faTrashAlt} onClick={() => handleDeleteToDo(todo)} />,
                 ]}
                 onEdit={onEdit}
-                Input={<ToDoForm />}
+                Input={<ToDoForm input={input}/>}
                 title={todo.title}
               />
             );

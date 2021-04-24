@@ -1,8 +1,9 @@
 import React from 'react';
-import Button from './Button';
+import {Link} from 'react-router-dom'
 import Icon from './Icon'
 import '../styles/ListStyles/listHeader.css';
 import SearchBar from './SearchBar';
+import '../styles/button.css'
 
 const ListHeader = ({ children, onClick }) => {
   /*
@@ -18,7 +19,13 @@ const ListHeader = ({ children, onClick }) => {
         />
       </div>
       <div>
-        <Button onClick={onClick}>New</Button>
+      <Link
+            to="/toDoList/new"
+            className="button"
+            style={{ marginBottom: 20 }}
+          >
+            New 
+          </Link>
       </div>
     </div>
   );
