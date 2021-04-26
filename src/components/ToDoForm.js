@@ -1,22 +1,26 @@
 import React, { useState, useEffect } from 'react';
-import Header from './Header';
+import { saveNewToDo, updateToDo } from '../services/ToDoService'
 import Input from './Input';
 import '../styles/LoginForm.css';
 import '../styles/main.css';
 
-const ToDoForm = ({input, onEdit}) => {
-  const [formData, setFormData] = useState({ id: "",title: "" });
+
+const ToDoForm = ({input, handleEditToDo, history, todo}) => {
+  const [formData, setFormData] = useState({ id: "",title: "", isEdited: todo.isEdited});
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    setFormData({id: 5, title:'test'})
+    setFormData(todo)
+   
   }, [])
 
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    //onEdit()
-    // validate()
+    e.preventDefault()
+    console.log(formData.title)
+    handleEditToDo(todo, formData.title)
+
+
   };
 
   const handleChange = ({ target: input }) => {
@@ -28,10 +32,10 @@ const ToDoForm = ({input, onEdit}) => {
   return (
     <form onSubmit={handleSubmit}>  
         <Input
-          name="todo"
+          name="title"
           onChange={handleChange}
           type="text"
-          value={formData.todo}
+          value={formData.title}
         />
         <button>Save</button>
     </form>
