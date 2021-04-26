@@ -1,15 +1,84 @@
+*:focus {
+  outline: none;
+}
+
 .login-container {
-  height: 400px;
-  width: 400px;
+  align-items: center;
+  background-color: rgb(247, 247, 247);
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
+  height: 300px;
   justify-content: center;
-  align-items: center;
-  background-color: red;
+  width: 300px;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
 }
 
 .login-input-container {
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
+  width: 200px;
 }
 
+.login-input-container {
+  margin-bottom: 15px;
+}
+
+.login-input {
+  width: 100%;
+  height: 25px;
+  box-sizing: border-box;
+  border: 1.3px solid #ccc;
+  font-size: 13px;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 8%), 0 6px 20px 0 rgb(0 0 0 / 8%);
+}
+
+.login-welcome {
+  margin-bottom: 20px;
+  font-size: 23px;
+}
+.login-label {
+  font-size: 12px;
+  margin-bottom: 4px;
+  margin-left: 4px;
+}
+
+.login-input::placeholder {
+  font-size: 10px;
+}
+.login-input:focus::placeholder {
+  color: transparent;
+}
+.login-input:invalid {
+  border: 1.6px solid red;
+}
+
+.login-button {
+  background-color: rgb(21, 46, 70);
+  color: white;
+  font-weight: bold;
+  margin-top: 10px;
+  border-radius: 4px;
+  height: 25px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 8%), 0 6px 20px 0 rgb(0 0 0 / 8%);
+}
+.login-button:hover {
+  background-color: rgb(22, 50, 69);
+  color: white;
+  font-weight: bold;
+}
+.login-button:disabled {
+  background-color: rgb(21, 46, 70, 0.6);
+  color: white;
+  cursor: not-allowed;
+}
+
+.error {
+  color: red;
+  font-size: 10px;
+}

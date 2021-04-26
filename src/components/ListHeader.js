@@ -1,11 +1,11 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import Button from './Button';
 import Icon from './Icon'
 import '../styles/ListStyles/listHeader.css';
 import SearchBar from './SearchBar';
-import '../styles/button.css'
 
-const ListHeader = ({ children, onClick }) => {
+const ListHeader = ({ onClick, onChange, value }) => {
   /*
   contains  a search bar and button
   */
@@ -13,19 +13,17 @@ const ListHeader = ({ children, onClick }) => {
     <div className="list-header">
       <div>
         <SearchBar
-          type="search"
-          placeholder=" search..."
           IconComponent={<Icon name="search" />}
+          onChange={onChange}
+          placeholder=" search..."
+          type="search"
+          value={value}
         />
       </div>
       <div>
-      <Link
-            to="/toDoList/new"
-            className="button"
-            style={{ marginBottom: 20 }}
-          >
-            New 
-          </Link>
+        <Link to="/todo/new">
+          <Button onClick={onClick}>New</Button>
+        </Link>
       </div>
     </div>
   );

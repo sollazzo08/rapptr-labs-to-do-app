@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Header from './Header';
 import Input from './Input';
-import * as yup from 'yup';
 import '../styles/LoginForm.css';
 import '../styles/main.css';
 
@@ -12,18 +11,7 @@ const ToDoForm = ({input, onEdit}) => {
   useEffect(() => {
     setFormData({id: 5, title:'test'})
   }, [])
-  // let schema = yup.object().shape({
-  //   email: yup.string().email().required(),
-  //   password: yup.string().required()
 
-  // })
-
-  // const validate = async () => {
-
-  //    await schema.validate(formData).catch(function (err) {
-  //       console.log(err.errors)
-  //     })
-  // }
 
   const handleSubmit = (e) => {
     e.preventDefault();
