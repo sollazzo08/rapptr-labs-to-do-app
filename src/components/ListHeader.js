@@ -1,11 +1,10 @@
 import React from 'react';
-import Button from './Button';
+import Button from './Button.tsx';
 import Icon from './Icon';
 import '../styles/ListStyles/listHeader.css';
 import SearchBar from './SearchBar';
-import ToDoForm from './ListItemToDoForm';
 
-const ListHeader = ({ data, onClick, onChange, value }) => {
+const ListHeader = ({ onClick, onChange, value }) => {
   return (
     <div className="list-header">
       <div>

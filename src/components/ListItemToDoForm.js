@@ -6,7 +6,6 @@ import Input from './Input';
 import '../styles/LoginForm.css';
 import '../styles/toDoForm.css';
 
-
 const ListItemToDoForm = ({ handleEditToDo, todo }) => {
   const [formData, setFormData] = useState({
     id: '',

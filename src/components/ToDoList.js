@@ -6,7 +6,7 @@ import { faTrashAlt, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import ListHeader from './ListHeader';
 import Header from './Header';
 import ListItemToDoForm from './ListItemToDoForm';
-import Button from './Button';
+import Button from './Button.tsx';
 import '../styles/main.css';
 import '../styles/ToDoList.css';
 import ToDoForm from './ToDoForm';

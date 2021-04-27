@@ -1,7 +1,18 @@
 import React from 'react';
 import '../styles/input.css';
 
-const Input = ({
+interface InputProps  {
+  error : object
+  label : string
+  IconComponent : JSX.Element
+  name : string
+  onChange : React.ChangeEventHandler<HTMLInputElement>
+  placeholder : string
+  type : string
+  value : string
+}
+
+const Input: React.FC<InputProps> = ({
   error,
   label,
   IconComponent,

@@ -20,21 +20,26 @@ const LoginForm = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     const errors = validate(formData, schema);
     setErrors(errors || {});
     if (errors) return;
 
+    // I forced the login because of the CORS error I encounterd
     props.history.push('/toDoList');
+    // This catch never gets hit because the CORS is stopping the endpoint from
+    // recieving a response
 
     try {
       const { email, password } = formData;
       await login(email, password);
     } catch (error) {
-      if (error.response) {
+      if (
+        error.response &&
+        error.response.status >= 400 &&
+        error.response.status < 500
+      ) {
         const errorsClone = { ...errors };
         errorsClone.username = error.response.data;
-
         setErrors(errorsClone);
       }
     }
