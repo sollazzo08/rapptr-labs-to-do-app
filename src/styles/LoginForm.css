@@ -19,20 +19,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   width: 200px;
-}
-
-.login-input-container {
   margin-bottom: 15px;
-}
-
-.login-input {
-  width: 100%;
-  height: 25px;
-  box-sizing: border-box;
-  border: 1.3px solid #ccc;
-  font-size: 13px;
-  border-radius: 4px;
-  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 8%), 0 6px 20px 0 rgb(0 0 0 / 8%);
 }
 
 .login-welcome {
@@ -78,7 +65,4 @@
   cursor: not-allowed;
 }
 
-.error {
-  color: red;
-  font-size: 10px;
-}
+

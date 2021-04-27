@@ -1,0 +1,36 @@
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 200px;
+  margin-bottom: 15px;
+}
+
+.input {
+  width: 100%;
+  height: 25px;
+  box-sizing: border-box;
+  border: 1.3px solid #ccc;
+  font-size: 13px;
+  border-radius: 4px;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 8%), 0 6px 20px 0 rgb(0 0 0 / 8%);
+}
+.input-label {
+  font-size: 12px;
+  margin-bottom: 4px;
+  margin-left: 4px;
+}
+.input-error {
+  color: red;
+  font-size: 10px;
+}
+
+.input::placeholder {
+  font-size: 10px;
+}
+.input:focus::placeholder {
+  color: transparent;
+}
+.input[type]:invalid {
+  border: 1.6px solid red;
+}

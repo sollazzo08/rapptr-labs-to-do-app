@@ -1,0 +1,9 @@
+.to-do-form {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-top: 2px solid;
+  align-items: center;
+  border-color: black;
+}

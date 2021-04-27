@@ -4,7 +4,8 @@ const todos = [
   { id: 3, title: 'Walk the Dog', isEdited: false },
   { id: 4, title: 'Get Lunch', isEdited: false },
   { id: 5, title: 'Zumba', isEdited: false },
-  { id: 6, title: 'Coding Stream', isEdited: false },
+  { id: 6, title: 'Get new shoes', isEdited: false },
+  { id: 7, title: 'Pay Dad', isEdited: false },
 ];
 
 export const getToDos = () => {

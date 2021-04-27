@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Joi from 'joi-browser';
+import { validateProperty } from '../services/validation';
 import Button from './Button';
 import Input from './Input';
 import '../styles/LoginForm.css';
-import '../styles/main.css';
+import '../styles/toDoForm.css';
+
 
 const ToDoForm = ({ handleEditToDo, todo }) => {
   const [formData, setFormData] = useState({
@@ -17,19 +19,6 @@ const ToDoForm = ({ handleEditToDo, todo }) => {
     title: Joi.string().min(1).max(25).required(),
   };
 
-  const validateProperty = ({ name, value }) => {
-    const obj = {
-      [name]: value, //dynmaically create property fields using computed propertys
-    };
-
-    const schemaClone = {
-      [name]: schema[name],
-    };
-    const { error } = Joi.validate(obj, schemaClone);
-
-    return error ? error.details[0].message : null;
-  };
-
   useEffect(() => {
     setFormData(todo);
   }, []);
@@ -41,7 +30,7 @@ const ToDoForm = ({ handleEditToDo, todo }) => {
 
   const handleChange = ({ target: input }) => {
     const errorsClone = { ...errors };
-    const errorMessage = validateProperty(input);
+    const errorMessage = validateProperty(input, schema);
     if (errorMessage) errorsClone[input.name] = errorMessage;
     else delete errorsClone[input.name];
 
@@ -52,18 +41,7 @@ const ToDoForm = ({ handleEditToDo, todo }) => {
   };
 
   return (
-    <form
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        paddingLeft: '30px',
-        paddingRight: '30px',
-        borderTop: '2px solid',
-        alignItems: 'center',
-        borderColor: 'black',
-      }}
-      onSubmit={handleSubmit}
-    >
+    <form className="to-do-form" onSubmit={handleSubmit}>
       <div>
         <Input
           name="title"
@@ -71,11 +49,7 @@ const ToDoForm = ({ handleEditToDo, todo }) => {
           type="text"
           value={formData.title}
         />
-        {errors && (
-          <div style={{ color: 'red', fontSize: '12px' }}>
-            {errors['title']}
-          </div>
-        )}
+        {errors && <div className="input-error">{errors['title']}</div>}
       </div>
       <Button>Save</Button>
     </form>

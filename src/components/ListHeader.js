@@ -1,14 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 import Button from './Button';
-import Icon from './Icon'
+import Icon from './Icon';
 import '../styles/ListStyles/listHeader.css';
 import SearchBar from './SearchBar';
 
 const ListHeader = ({ onClick, onChange, value }) => {
-  /*
-  contains  a search bar and button
-  */
   return (
     <div className="list-header">
       <div>
@@ -21,7 +17,7 @@ const ListHeader = ({ onClick, onChange, value }) => {
         />
       </div>
       <div>
-          <Button onClick={onClick}>New</Button>
+        <Button onClick={onClick}>New</Button>
       </div>
     </div>
   );

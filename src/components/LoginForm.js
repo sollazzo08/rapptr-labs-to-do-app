@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import Joi from 'joi-browser';
-import { login } from '../services/authServices';
 import Icon from '../components/Icon';
+import { validate, validateProperty } from '../services/validation';
 import { faLock, faUser } from '@fortawesome/free-solid-svg-icons';
+import { login } from '../api/auth';
 import Header from './Header';
 import Input from './Input';
 import '../styles/LoginForm.css';
@@ -17,37 +18,15 @@ const LoginForm = (props) => {
     password: Joi.string().min(4).max(16).required().label('Password'),
   };
 
-  const validate = () => {
-    const result = Joi.validate(formData, schema, {
-      abortEarly: false,
-    });
-
-    if (!result.error) return null;
-    const errors = {};
-    for (let item of result.error.details) errors[item.path[0]] = item.message;
-    return errors;
-  };
-
-  const validateProperty = ({ name, value }) => {
-    const obj = {
-      [name]: value, //dynmaically create property fields using computed propertys
-    };
-
-    const schemaClone = {
-      [name]: schema[name],
-    };
-    const { error } = Joi.validate(obj, schemaClone);
-
-    return error ? error.details[0].message : null;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const errors = validate();
+
+    const errors = validate(formData, schema);
     setErrors(errors || {});
     if (errors) return;
 
     props.history.push('/toDoList');
+
     try {
       const { email, password } = formData;
       await login(email, password);
@@ -59,13 +38,11 @@ const LoginForm = (props) => {
         setErrors(errorsClone);
       }
     }
-
-    console.log('hey we have submitted the form');
   };
 
   const handleChange = ({ target: input }) => {
     const errorsClone = { ...errors };
-    const errorMessage = validateProperty(input);
+    const errorMessage = validateProperty(input, schema);
     if (errorMessage) errorsClone[input.name] = errorMessage;
     else delete errorsClone[input.name];
 
@@ -108,7 +85,10 @@ const LoginForm = (props) => {
                 error={errors['password']}
               />
             </div>
-            <button className="login-button" disabled={validate()}>
+            <button
+              className="login-button"
+              disabled={validate(formData, schema)}
+            >
               Login
             </button>
           </div>
