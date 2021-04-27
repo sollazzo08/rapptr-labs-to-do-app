@@ -21,9 +21,7 @@ const ListHeader = ({ onClick, onChange, value }) => {
         />
       </div>
       <div>
-        <Link to="/todo/new">
           <Button onClick={onClick}>New</Button>
-        </Link>
       </div>
     </div>
   );

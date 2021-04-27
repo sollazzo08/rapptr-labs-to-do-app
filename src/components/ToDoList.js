@@ -11,8 +11,6 @@ import ToDoForm from './ToDoForm';
 
 const ToDoList = () => {
   const [todos, setTodos] = useState([]);
-  const [onEdit, setOnEdit] = useState(false);
-  const [input, setInput] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
@@ -24,32 +22,16 @@ const ToDoList = () => {
     setTodos(todosClone);
   };
   const handleEditToDo = (todo, newText) => {
+    const todosClone = [...todos];
+    todosClone.map((t) => {
+      if (t.id === todo.id) {
+        t.title = newText;
+        t.isEdited = !todo.isEdited;
+      }
+      return t;
+    });
 
-     const todosClone = [...todos];
-     const updatedTodo = todosClone.map((t) => {
-       if (t.id === todo.id) {
-        t.title = newText
-        t.isEdited = !todo.isEdited
-       }
-       return t;
-   });
-    
-     setTodos(updatedTodo);
-
-
-
-
-    //  const todosClone = [...todos]
-    //  const index = todosClone.indexOf(todo);
-    //  todosClone[index] = {...todosClone[index]}
-    //  todosClone.title = newText
-    //  todosClone[index].isEdited = !todosClone[index].isEdited;
-
-    //  console.log(todosClone)
-
-    setTodos(todosClone)
-
-
+    setTodos(todosClone);
   };
 
   const handleAddToDo = () => {
@@ -87,24 +69,26 @@ const ToDoList = () => {
           </ListHeader>
         </div>
         <div className="todo-list-content">
-          {todoss.map((todo) => 
-            !(todo.isEdited === true) ? <ListItem
-              key={todo.id}
-              IconComponent={[
-                <Icon
-                  name={faPencilAlt}
-                  onClick={() => handleEditToDo(todo, todo.title)}
-                />,
-                <Icon
-                  name={faTrashAlt}
-                  onClick={() => handleDeleteToDo(todo)}
-                />,
-              ]}
-              id={todo.id}
-              title={todo.title}
-            />: <ToDoForm todo={todo} handleEditToDo={handleEditToDo} />
-    
-            
+          {todoss.map((todo) =>
+            !(todo.isEdited === true) ? (
+              <ListItem
+                key={todo.id}
+                IconComponent={[
+                  <Icon
+                    name={faPencilAlt}
+                    onClick={() => handleEditToDo(todo, todo.title)}
+                  />,
+                  <Icon
+                    name={faTrashAlt}
+                    onClick={() => handleDeleteToDo(todo)}
+                  />,
+                ]}
+                id={todo.id}
+                title={todo.title}
+              />
+            ) : (
+              <ToDoForm todo={todo} handleEditToDo={handleEditToDo} />
+            )
           )}
         </div>
       </div>
