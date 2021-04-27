@@ -9,15 +9,13 @@ export const getToDos = () => {
 };
 
 export const saveNewToDo = (todo) => {
- 
- 
   let newTodo = todos.find((t) => t.id === todo.id) || {};
-  newTodo.id = todo.id
+  newTodo.id = todo.id;
   newTodo.title = todo.title;
-  newTodo.isEdited = false
+  newTodo.isEdited = false;
 
-  if(!newTodo.id){
-    todos.push(todo)
+  if (!newTodo.id) {
+    todos.push(todo);
   }
 
   return newTodo;
