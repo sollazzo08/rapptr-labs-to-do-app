@@ -5,14 +5,16 @@ import { getToDos } from '../services/ToDoService';
 import { faTrashAlt, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
 import ListHeader from './ListHeader';
 import Header from './Header';
-import ToDoForm from './ToDoForm';
+import ListItemToDoForm from './ListItemToDoForm';
 import Button from './Button';
 import '../styles/main.css';
 import '../styles/ToDoList.css';
+import ToDoForm from './ToDoForm';
 
 const ToDoList = (props) => {
   const [todos, setTodos] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [toggleNewTodoForm, setToggleNewTodoForm] = useState(false);
 
   useEffect(() => {
     setTodos(getToDos());
@@ -35,9 +37,11 @@ const ToDoList = (props) => {
 
     setTodos(todosClone);
   };
-
-  const handleAddToDo = () => {
-    console.log('Added');
+  const toggleNewToDoForm = () => {
+    setToggleNewTodoForm(true);
+  };
+  const handleAddToDo = (newTodo) => {
+    setTodos([...todos, newTodo]);
   };
 
   const handleSearchToDo = (query) => {
@@ -59,7 +63,7 @@ const ToDoList = (props) => {
       <div className="main">
         <Button
           style={{ position: 'absolute', top: 10, left: 10 }}
-          onClick={() => props.history.push('/login')}
+          onClick={() => props.history.push('/')}
         >
           Logout
         </Button>
@@ -69,12 +73,20 @@ const ToDoList = (props) => {
         <div className="todo-list-container">
           <div className="todo-list-header">
             <ListHeader
+              data={todos}
               value={searchQuery}
               onChange={handleSearchToDo}
-              onClick={handleAddToDo}
+              onClick={toggleNewToDoForm}
             >
               New
             </ListHeader>
+            {toggleNewTodoForm && (
+              <ToDoForm
+                data={todos}
+                handleAddToDo={handleAddToDo}
+                setToggleNewTodoForm={setToggleNewTodoForm}
+              />
+            )}
           </div>
           <div className="todo-list-content">
             {todoList.map((todo) =>
@@ -95,7 +107,7 @@ const ToDoList = (props) => {
                   title={todo.title}
                 />
               ) : (
-                <ToDoForm todo={todo} handleEditToDo={handleEditToDo} />
+                <ListItemToDoForm todo={todo} handleEditToDo={handleEditToDo} />
               )
             )}
           </div>

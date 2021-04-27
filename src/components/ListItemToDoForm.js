@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Joi from 'joi-browser';
 import { validateProperty } from '../services/validation';
-import { saveNewToDo } from '../services/ToDoService';
 import Button from './Button';
 import Input from './Input';
 import '../styles/LoginForm.css';
 import '../styles/toDoForm.css';
 
-const ToDoForm = ({ data, handleAddToDo,setToggleNewTodoForm}) => {
+
+const ListItemToDoForm = ({ handleEditToDo, todo }) => {
   const [formData, setFormData] = useState({
     id: '',
     title: '',
@@ -19,16 +19,14 @@ const ToDoForm = ({ data, handleAddToDo,setToggleNewTodoForm}) => {
     title: Joi.string().min(1).max(25).required(),
   };
 
+  useEffect(() => {
+    setFormData(todo);
+  }, [todo]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const formDataClone = {...formData}
-    formDataClone.id = data.length + 1;
-   
-    const newTodo = saveNewToDo(formDataClone)
-    handleAddToDo(newTodo)
-    setToggleNewTodoForm(false)
-  }
+    handleEditToDo(todo, formData.title);
+  };
 
   const handleChange = ({ target: input }) => {
     const errorsClone = { ...errors };
@@ -49,7 +47,7 @@ const ToDoForm = ({ data, handleAddToDo,setToggleNewTodoForm}) => {
           name="title"
           onChange={handleChange}
           type="text"
-          value={formData['title']}
+          value={formData.title}
         />
         {errors && <div className="input-error">{errors['title']}</div>}
       </div>
@@ -58,4 +56,4 @@ const ToDoForm = ({ data, handleAddToDo,setToggleNewTodoForm}) => {
   );
 };
 
-export default ToDoForm;
+export default ListItemToDoForm;
