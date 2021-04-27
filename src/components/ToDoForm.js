@@ -21,7 +21,7 @@ const ToDoForm = ({ handleEditToDo, todo }) => {
 
   useEffect(() => {
     setFormData(todo);
-  }, []);
+  }, [todo]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
